@@ -1,0 +1,23 @@
+{
+  "name": "shellcode-slides",
+  "version": "1.0.0",
+  "description": "Introduction to shell coding",
+  "main": "index.html",
+  "scripts": {
+    "start": "reload -b"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KOPTE3/shellcode-slides.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KOPTE3/shellcode-slides/issues"
+  },
+  "homepage": "https://github.com/KOPTE3/shellcode-slides#readme",
+  "devDependencies": {
+    "reload": "^1.1.1"
+  }
+}

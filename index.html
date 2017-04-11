@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>Introduction to shell coding</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<script>
+		'use strict';
+
+		const gcd = (a, b) => (b === 0) ? a : gcd(b, a % b);
+		const w = screen.width;
+		const h = screen.height;
+		const r = gcd(w, h);
+
+		console.log(`${w}x${h}`);
+		let aspect = `${w / r}x${h / r}`;
+		console.log(aspect);
+
+		const ratios = ['8x5', '4x3', '6x5', '5x3', '5x4', '16x9'];
+		if (!ratios.includes(aspect)) {
+			aspect = ratios[0];
+		}
+
+		document.write(`<link rel="stylesheet" href="/lib/shower/themes/technopark/styles/screen-${aspect}.css">`);
+
+	</script>
+
+	<link rel="stylesheet" href="/lib/hljs/styles/github.css">
+
+
+</head>
+<body class="shower list">
+
+	<header class="caption">
+		<h1>Introduction to shell coding</h1>
+		<p>Ostapenko Anatoliy</p>
+	</header>
+
+	<section class="slide">
+		<h2 class="shout">Shell coding<br/><small style="font-size:30px;">Check slides at <a href="https://github.com/KOPTE3/http2-slides" target="_blank">https://github.com/KOPTE3/shellcode-slides</a></small></h2>
+	</section>
+
+
+
+
+
+
+
+
+
+	<section class="slide">
+		<h2>Original HTTP/0.9 implementation</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Hypertext Transfer Protocol -- HTTP/1.1</h2>
+		<div style="position:relative;width: 100%;height: 100%;overflow: hidden;margin: 0 auto;">
+			<iframe src="https://rfc2.ru/2068.rfc/original" frameborder="0" width="100%" height="80%" style="transform-origin: center;transform: translate(10%,-10%) scale(1.2)"></iframe>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>HTTP/1.1</h2>
+		<p style="line-height: 1.3em">HTTP/1.1 was designed for connections and bandwidth that are significantly different today</p>
+		<ul lang="ru">
+			<li><mark>Single parallel</mark> request per connection</li>
+			<li>Max. 10 connections <mark>per domain</mark></li>
+			<li>Exclusively <mark>client-imitated</mark> requests</li>
+			<li><mark>Uncompressed and redundant</mark> request and response headers</li>
+			<li><mark>Optional</mark> data compression</li>
+			<li>HTTP is <mark>slow</mark>, but HTTPS is <mark>even slower</mark></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>HTTP-request stages</h2>
+		<div style="position:relative;width: 72%;height: 75%;overflow: hidden;margin: 0 auto;"><img class="place" src="images/http-request-stages.png" style="transform-origin: center;transform: translate(-50%,-48%) scale(0.85);"></div>
+	</section>
+
+	<section class="slide">
+		<h2>HTTP-latency</h2>
+		<div style="position:relative;width: 100%;height: 75%;margin: 0 auto;"><img class="place" src="images/latency.png" style="transform-origin: center;transform: translate(-50%,-50%) scale(0.95);"></div>
+	</section>
+
+	<section class="slide">
+		<h2>HTTP-latency</h2>
+		<div style="position:relative;width: 100%;height: 75%;margin: 0 auto;"><img class="place" src="images/latency-bandwidth.svg" style="transform-origin: center;transform: translate(-50%,-50%) scale(0.8);"></div>
+	</section>
+
+	<section class="slide">
+		<h2>One request per connection</h2>
+		<div style="position:relative;width: 100%;height: 75%;margin: 0 auto;"><img class="place" src="images/one-request-per-connection.png" style="transform-origin: center;transform: translate(-50%,-50%) scale(1.2);"></div>
+	</section>
+
+	<section class="slide">
+		<h2>Many performance HTTP/1.1 hacks</h2>
+		<p class="medium-content"></p>
+		<ul>
+			<li>Concatenation of files</li>
+			<li>Image sprites</li>
+			<li>Domain sharding</li>
+			<li>Data inlining</li>
+			<li>Critical CSS</li>
+			<li>And more...</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>HTTP/2</h2>
+		<p style="line-height: 1.3em">HTTP/2 promises speed improvement, decreased network latency and better management of assets</p>
+		<ul lang="ru">
+			<li><mark>64% reduction</mark> in page load times (23% on mobile)</li>
+			<li><mark>Unlimited number of parallel</mark> requests per connection</li>
+			<li><mark>Quicker slow-start</mark> and better compression</li>
+			<li><mark>One connection per host</mark>, which handles all requests</li>
+			<li>Developers can <mark>prioritize and push</mark> the resources</li>
+			<li><em>Requires HTTPS for run</em></li>
+			<li><mark>Fall back</mark> to HTTP/1.1</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>HTTP/2 requires server-side and client-side implementations</h2>
+		<p>Servers:</p>
+		<ul lang="ru">
+			<li>nginx 1.9.5</li>
+			<li>node.js 5.0</li>
+			<li>Apache 2.4.12</li>
+			<li>Jetty 9.3 and Netty 4.1 (Java)</li>
+			<li>and more...</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>HTTP/2 requires server-side and client-side implementations</h2>
+		<div style="position:relative;width: 100%;height: 80%;">
+			<img class="place" src="images/caniuse-http2.png" style="transform-origin: center;transform: translate(-50.3%, -50%) scale(0.85);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>HTTP/2 requires server-side and client-side implementations</h2>
+		<p>CDNs:</p>
+		<ul lang="ru">
+			<li>Akamai is the first major CDN to support HTTP/2 and HTTP/2 Server Push</li>
+			<li>Cloudflare supports HTTP/2 using nginx</li>
+			<li>AWS CloudFront supports HTTP/2</li>
+			<li>KeyCDN supports HTTP/2</li>
+			<li>and more...</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>HTTP/2 requires server-side and client-side implementations</h2>
+		<p>Web services (<mark>HTTP/2 is used by 12.6%</mark> of all the websites):</p>
+		<ul lang="ru">
+			<li>google.com</li>
+			<li>youtube.com</li>
+			<li>facebook.com</li>
+			<li>wikipedia.org</li>
+			<li>vk.com</li>
+			<li>e.mail.ru (partial support ;] )</li>
+			<li>and more...</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>HTTP/2 core features</h2>
+		<ul lang="ru">
+			<li>Multiplexing (via streams, frames and messages)</li>
+			<li>Binary data format</li>
+			<li>Prioritization</li>
+			<li>Flow control</li>
+			<li>Header compression</li>
+			<li>Server push</li>
+			<li>Something else?</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Streams, Messages, and Frames</h2>
+		<blockquote>
+			<p><b>Stream</b> &mdash; a bidirectional flow of bytes within an established connection, which may carry one or more messages</p>
+		</blockquote>
+		<blockquote>
+			<p><b>Message</b> &mdash; a complete sequence of frames that map to a logical request or response message</p>
+		</blockquote>
+		<blockquote>
+			<p><b>Frame</b> &mdash; the smallest unit of communication in HTTP/2, each containing a frame header, which at a minimum identifies the stream to which the frame belongs</p>
+		</blockquote>
+	</section>
+
+	<section class="slide">
+		<h2>Streams, Messages, and Frames</h2>
+		<div style="position:relative;width: 100%;height: 80%;">
+			<img class="place" src="images/streams-messages-frames.svg" style="transform-origin: center;transform: translate(-50%, -50%) scale(0.65);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Streams, Messages, and Frames</h2>
+		<ul>
+			<li>SINGLE <mark>TCP connection</mark></li>
+			<ul>
+				<li>ANY number of <mark>bidirectional streams</mark></li>
+				<ul>
+					<li>EACH stream has a unique identifier and optional priority information that is used to carry
+						<mark>bidirectional messages</mark>
+					</li>
+					<ul>
+						<li>EACH message is a logical HTTP message, such as a request, or response, which consists of <mark>one or more frames</mark></li>
+						<ul>
+							<li>THE frame is the <mark>smallest unit of communication</mark> that carries a specific type of data</li>
+						</ul>
+					</ul>
+				</ul>
+			</ul>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Binary Framing Layer</h2>
+		<div style="position:relative;width: 100%;height: 80%;">
+			<img class="place" src="images/binary-layer.svg" style="transform-origin: center;transform: translate(-50%, -50%) scale(1);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Binary Framing Layer</h2>
+		<div style="position:relative;width: 100%;height: 80%;">
+			<img class="place" src="images/binary-http2.svg" style="transform-origin: center;transform: translate(-50%, -50%) scale(1);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Request and Response Multiplexing</h2>
+		<div style="position:relative;width: 100%;height: 80%;">
+			<img class="place" src="images/http2-connection.svg" style="transform-origin: center;transform: translate(-50%, -50%) scale(1);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Request and Response Multiplexing</h2>
+		<div style="position:relative;width: 100%;height: 80%;">
+			<img class="place" src="images/many-wires.png" style="transform-origin: center;transform: translate(-50%, -65%) scale(0.27);">
+			<div style="overflow:hidden;height:10%;position:relative;transform:translate(0%, 250px)"><img class="place" src="images/one-wire.jpg" style="transform-origin: center;transform: translate(-46%, -50%) rotate(45deg) scale(0.65);"></div>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div style="position:fixed;width: 100%;height: 100%; top: 0; left: 0;">
+			<img class="place" src="images/http:1-loading.png" style="transform-origin: left top;top: 0;left: 0;transform: translate(0px, 0px) scale(1.25);">
+			<img class="place" src="images/http:2-loading.png" style="transform-origin: left top;top: 0;transform: translate(40%, 0px) scale(1.25);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Stream Prioritization</h2>
+		<div style="position:relative;width: 100%;height: 80%;">
+			<img class="place" src="images/prioretizations-of-http2.svg" style="transform-origin: center;transform: translate(-50%, -50%) scale(1);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>One Connection Per Origin</h2>
+		<ul>
+			<li>All HTTP/2 connections are persistent, and <mark>only one connection per origin is required</mark></li>
+			<li>Most HTTP transfers are short and bursty, whereas <mark>TCP is optimized for long-lived, bulk data transfers</mark>. By reusing the same connection HTTP/2 is able to both make <mark>more efficient use of each TCP connection</mark></li>
+			<li>Reduced number of connections is a particularly <mark>important feature for improving performance of HTTPS deployments</mark></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Flow Control</h2>
+		<code>404 Slide Not Found</code>
+	</section>
+
+	<section class="slide">
+		<h2>Server Push</h2>
+		<div style="position:relative;width: 100%;height: 80%;">
+			<img class="place" src="images/http2-server-push.svg" style="transform-origin: center;transform: translate(-50%, -50%) scale(1);">
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Header Compression</h2>
+		<div style="position:relative;width: 100%;height: 80%;">
+			<img class="place" src="images/http2-hpack.svg" style="transform-origin: center;transform: translate(-50%, -48%) scale(0.63);">
+		</div>
+	</section>
+
+	<section class="slide question">
+		<h2>So... The HTTP/2 is much good!</h2>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Thank you for attention!!!</h2>
+	</section>
+
+	<section class="slide question">
+		<h2>No! That's not all</h2>
+	</section>
+
+	<section class="slide">
+		<h2>No! That's not all</h2>
+		<div style="position:relative;width: 100%;height: 80%;">
+			<img class="place" src="images/many-wires.png" style="transform-origin: center;transform: translate(-50%, -68%) scale(0.27);">
+			<div style="overflow:hidden;height:8%;position:relative;transform:translate(0%, 205px)"><img class="place" src="images/one-wire.jpg" style="transform-origin: center;transform: translate(-46%, -50%) rotate(45deg) scale(0.65);"></div>
+			<div style="overflow:hidden;height:8%;position:relative;transform:translate(0%, 205px)"><img class="place" src="images/one-wire.jpg" style="transform-origin: center;transform: translate(-46%, -50%) rotate(45deg) scale(0.65);"></div>
+			<div style="overflow:hidden;height:8%;position:relative;transform:translate(0%, 205px)"><img class="place" src="images/one-wire.jpg" style="transform-origin: center;transform: translate(-46%, -50%) rotate(45deg) scale(0.65);"></div>
+			<div style="overflow:hidden;height:8%;position:relative;transform:translate(0%, 205px)"><img class="place" src="images/one-wire.jpg" style="transform-origin: center;transform: translate(-46%, -50%) rotate(45deg) scale(0.65);"></div>
+			<div style="overflow:hidden;height:8%;position:relative;transform:translate(0%, 205px)"><img class="place" src="images/one-wire.jpg" style="transform-origin: center;transform: translate(-46%, -50%) rotate(45deg) scale(0.65);"></div>
+			<div style="overflow:hidden;height:8%;position:relative;transform:translate(0%, 205px)"><img class="place" src="images/one-wire.jpg" style="transform-origin: center;transform: translate(-46%, -50%) rotate(45deg) scale(0.65);"></div>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Package Loss Rate</h2>
+		<div style="position:relative;width: 100%;height: 80%;">
+			<img class="place" src="images/plr.png" style="transform-origin: center;transform: translate(-50%, -48%) scale(0.9);">
+		</div>
+	</section>
+
+
+
+
+
+
+
+	<section class="slide">
+		<h2>More information</h2>
+		<ul>
+			<li>This excellent <a href="https://docs.google.com/presentation/d/1r7QXGYOLCh4fcUq0jDdDwKJWNqWK1o4xMtYpKZCJYjM/present?slide=id.p19" target="_blank">set of slides</a> has more information on some of the points covered in this presentation</li>
+			<li>Vitaly Friedman: <a href="https://youtu.be/whFhyHysYYg" target="_blank">How We Moved To HTTP/2 To Improve Performance... And Failed</a></li>
+			<li>High Performance Browser Networking (O'Reilly): <a href="https://youtu.be/whFhyHysYYg" target="_blank">HTTP/2</a></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Any questions?</h2>
+	</section>
+
+	<div class="progress"></div>
+	<script src="/lib/shower/shower.min.js"></script>
+	<script src="/lib/hljs/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>
